@@ -28,7 +28,7 @@ public class MainPanel : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("DarkLight");
+        SceneManager.LoadScene("Level1");
     }
 
     public void ExitGame()
