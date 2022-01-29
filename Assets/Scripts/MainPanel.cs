@@ -18,24 +18,29 @@ public class MainPanel : MonoBehaviour
     [Header("Panels")]
     public GameObject mainPanel;
     public GameObject optionPanel;
+    public GameObject creditPanel;
 
 
+    // Start sound function
     private void Awake()
     {
         FXVolume.onValueChanged.AddListener(ChangeVolumeFX);
         MasterVolume.onValueChanged.AddListener(ChangeVolumeMaster);
     }
 
+    // Start game function
     public void PlayGame()
     {
         SceneManager.LoadScene("Level1");
     }
 
+    // Close game function
     public void ExitGame()
     {
         Application.Quit();
     }
 
+    // Mute sound function
     public void SetMute()
     {
         mixer.GetFloat("VolMaster", out lastVolume);
@@ -49,6 +54,7 @@ public class MainPanel : MonoBehaviour
         }
     }
 
+    // Change option-main panel function
     public void OpenPanel(GameObject panel)
     {
         mainPanel.SetActive(false);
@@ -58,6 +64,17 @@ public class MainPanel : MonoBehaviour
         PlaySoundButton();
     }
 
+    // Change credit-main panel function
+    public void OpenCredit(GameObject credit)
+    {
+        mainPanel.SetActive(false);
+        creditPanel.SetActive(false);
+
+        credit.SetActive(true);
+        PlaySoundButton();
+    }
+
+    // Change master and fx volume
     public void ChangeVolumeMaster(float v)
     {
         mixer.SetFloat("VolMaster", v);
