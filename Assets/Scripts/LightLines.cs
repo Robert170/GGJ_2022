@@ -12,6 +12,12 @@ public class LightLines : MonoBehaviour
 
     [SerializeField] GameObject finalPoint;
 
+    [SerializeField] GameObject lightBlock;
+
+    public float yPosition;
+
+    private bool changePosition = false;
+
     public string levelName;
 
 
@@ -28,6 +34,7 @@ public class LightLines : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(lightBlock.transform.localScale);
         distance = (this.transform.position - finalPoint.transform.position).magnitude;
 
         lightLine = Physics2D.Raycast(this.transform.position, Vector2.down,
@@ -40,9 +47,13 @@ public class LightLines : MonoBehaviour
             Debug.Log(lightLine.collider.name);
             SceneManager.LoadScene(levelName);
         }
-        if (lightLine.collider.name != player.name)
+        if (lightLine.collider.name != player.name && !changePosition)
         {
             distance = (this.transform.position - finalPoint.transform.position).magnitude;
+
+            lightBlock.transform.position = new Vector3(lightBlock.transform.position.x, yPosition, lightBlock.transform.position.z);
+            Debug.Log(yPosition);
+            changePosition = true;
         }
 
 
