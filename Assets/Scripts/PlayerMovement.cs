@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        Debug.Log(horizontalInput);
+        // Debug.Log(horizontalInput);
         if (horizontalInput > 0  )
         {
             animator.SetBool("Direction", true);

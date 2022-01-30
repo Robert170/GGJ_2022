@@ -31,7 +31,7 @@ public class MainPanel : MonoBehaviour
     // Start game function
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     // Close game function
