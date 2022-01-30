@@ -14,9 +14,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _gravity = 9.81f;
 
+    public Animator animator;
+
     private CharacterController _controller;
 
     private float directionY;
+    private float horizontalInput;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +30,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
+        Debug.Log(horizontalInput);
+        if (horizontalInput > 0  )
+        {
+            animator.SetBool("Direction", true);
+
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetBool("Direction", false);
+
+        }
 
         Vector2 moveDirection = new Vector2(horizontalInput, 0);
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput * _moveSpeed));
+
+
+        
 
         if (Input.GetButtonDown("Jump"))
         {
